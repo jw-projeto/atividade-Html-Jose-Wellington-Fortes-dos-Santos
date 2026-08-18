@@ -1,2 +1,1 @@
-# atividade-Ruan-curso
-Meu portifollio do GitHub
+# atividade-html-Jose Wellington Fortes dos Santos
