@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Currículo - JW</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .curriculo {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CABEÇALHO */
+
+        .cabecalho {
+            text-align: center;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .foto {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #2563eb;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cabecalho h1 {
+            font-size: 32px;
+            color: #172554;
+            margin-bottom: 5px;
+        }
+
+        .cabecalho h2 {
+            font-size: 17px;
+            color: #2563eb;
+            font-weight: normal;
+        }
+
+        .contato {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+
+
+        /* =========================
+           LINKS
+        ========================= */
+
+        .links {
+            margin-top: 15px;
+
+            display: flex;
+            justify-content: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            background: #172554;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .links a:hover {
+            background: #2563eb;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* SEÇÕES */
+
+        .secao {
+            margin-bottom: 25px;
+        }
+
+        .secao h2 {
+            color: #172554;
+            font-size: 19px;
+            border-bottom: 1px solid #dbeafe;
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+        }
+
+        .secao p {
+            font-size: 14px;
+            color: #555;
+        }
+
+
+        /* LISTAS */
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+
+        /* ITENS */
+
+        .item {
+            margin-bottom: 15px;
+        }
+
+        .item h3 {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .ano {
+            color: #2563eb !important;
+            font-size: 13px !important;
+        }
+
+
+        /* RESPONSIVO */
+
+        @media (max-width: 600px) {
+
+            .curriculo {
+                margin: 0;
+                padding: 25px 20px;
+                box-shadow: none;
+            }
+
+            .cabecalho h1 {
+                font-size: 27px;
+            }
+
+            .links a {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+
+        /* IMPRESSÃO */
+
+        @media print {
+
+            body {
+                background: white;
+            }
+
+            .curriculo {
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .links a {
+                color: #172554;
+                background: white;
+                border: 1px solid #172554;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="curriculo">
+
+
+        <!-- =========================
+             CABEÇALHO
+        ========================== -->
+
+        <header class="cabecalho">
+
+            <div class="foto">
+
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNZpFi2-7HCg9vlFr-Dh9AqbNvqyX_8WWVJQ&s"
+                    alt="Foto de perfil"
+                >
+
+            </div>
+
+
+            <h1>JW</h1>
+
+            <h2>Estudante</h2>
+
+
+            <div class="contato">
+
+                📧 jw10@email.com |
+                📱 (86) 11010-0000 |
+                📍 Campo Maior - PI
+
+            </div>
+
+
+            <!-- =========================
+                 GITHUB E INSTAGRAM
+            ========================== -->
+
+            <div class="links">
+
+                <a
+                    href="https://github.com/SEU_USUARIO"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    💻 GitHub
+                </a>
+
+
+                <a
+                    href="https://www.instagram.com/SEU_USUARIO/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📷 Instagram
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- OBJETIVO -->
+
+        <section class="secao">
+
+            <h2>Objetivo</h2>
+
+            <p>
+                Busco minha primeira oportunidade profissional,
+                onde possa adquirir experiência, desenvolver
+                minhas habilidades e contribuir com a equipe.
+            </p>
+
+        </section>
+
+
+        <!-- FORMAÇÃO -->
+
+        <section class="secao">
+
+            <h2>Formação Acadêmica</h2>
+
+            <div class="item">
+
+                <h3>Ensino Médio</h3>
+
+                <p>
+                    Ceti Patronato Nossa Senhora de Lourdes
+                </p>
+
+                <p class="ano">
+                    2*ano desenvolvimento de sistemas(ds)
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- HABILIDADES -->
+
+        <section class="secao">
+
+            <h2>Habilidades</h2>
+
+            <ul>
+
+                <li>
+                    Conhecimentos básicos de HTML e CSS
+                </li>
+
+                <li>
+                    Conhecimentos básicos de JavaScript
+                </li>
+
+                <li>
+                    Informática básica
+                </li>
+
+                <li>
+                    Boa comunicação
+                </li>
+
+                <li>
+                    Trabalho em equipe
+                </li>
+
+                <li>
+                    Organização e responsabilidade
+                </li>
+
+                <li>
+                    Facilidade para aprender
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- CURSOS -->
+
+        <section class="secao">
+
+            <h2>Cursos e Conhecimentos</h2>
+
+            <div class="item">
+
+                <h3>HTML e CSS</h3>
+
+                <p>
+                    Conhecimentos básicos de criação e
+                    estilização de páginas web.
+                </p>
+
+            </div>
+
+
+            <div class="item">
+
+                <h3>Informática</h3>
+
+                <p>
+                    Conhecimentos básicos de computador,
+                    internet e ferramentas de escritório.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJETOS -->
+
+        <section class="secao">
+
+            <h2>Projetos Pessoais</h2>
+
+            <div class="item">
+
+                <h3>Site pessoal</h3>
+
+                <p>
+                    Criação de uma página web utilizando
+                    HTML e CSS como forma de praticar
+                    desenvolvimento web.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- IDIOMAS -->
+
+        <section class="secao">
+
+            <h2>Idiomas</h2>
+
+            <ul>
+
+                <li>
+                    Português — Nativo
+                </li>
+
+                <li>
+                    Inglês — Básico
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- INFORMAÇÕES ADICIONAIS -->
+
+        <section class="secao">
+
+            <h2>Informações Adicionais</h2>
+
+            <ul>
+
+                <li>
+                    Disponibilidade para aprender
+                </li>
+
+                <li>
+                    Interesse em tecnologia
+                </li>
+
+                <li>
+                    Disponibilidade para primeiro emprego
+                </li>
+
+            </ul>
+
+        </section>
+
+
+    </div>
+
+</body>
+
+</html

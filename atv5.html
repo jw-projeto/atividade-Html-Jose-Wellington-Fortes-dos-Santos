@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurante Sabor Bom</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f1e8;
+            color: #333;
+        }
+
+        header {
+            background: #8b2f23;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        nav {
+            background: #5f2019;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .titulo h2 {
+            color: #8b2f23;
+            font-size: 30px;
+        }
+
+        .titulo p {
+            margin-top: 8px;
+            color: #666;
+        }
+
+        .categoria {
+            margin: 35px 0 20px;
+            color: #5f2019;
+            border-left: 5px solid #d99a2b;
+            padding-left: 12px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+        }
+
+        .imagem {
+            height: 160px;
+            background: linear-gradient(135deg, #d99a2b, #8b2f23);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .conteudo {
+            padding: 20px;
+        }
+
+        .conteudo h3 {
+            color: #5f2019;
+            margin-bottom: 8px;
+        }
+
+        .conteudo p {
+            color: #777;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .preco {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preco strong {
+            color: #8b2f23;
+            font-size: 20px;
+        }
+
+        .btn {
+            background: #8b2f23;
+            color: white;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #5f2019;
+        }
+
+        .pedido {
+            background: #8b2f23;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+            margin-top: 50px;
+            border-radius: 15px;
+        }
+
+        .pedido h2 {
+            margin-bottom: 10px;
+        }
+
+        .pedido button {
+            margin-top: 20px;
+            background: #ffd166;
+            color: #5f2019;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: #35110d;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🍽️ Restaurante Sabor Bom</h1>
+        <p>Comida caseira com muito sabor!</p>
+    </header>
+
+    <nav>
+        <a href="#pratos">Pratos</a>
+        <a href="#bebidas">Bebidas</a>
+        <a href="#pedido">Pedido</a>
+    </nav>
+
+    <main class="container">
+
+        <section class="titulo">
+            <h2>Nosso Cardápio</h2>
+            <p>Confira nossas opções e escolha seu prato favorito.</p>
+        </section>
+
+        <h2 class="categoria" id="pratos">🍛 Pratos Principais</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="imagem">🍛</div>
+
+                <div class="conteudo">
+                    <h3>Arroz, Feijão e Carne</h3>
+                    <p>O clássico prato caseiro com arroz, feijão e carne.</p>
+
+                    <div class="preco">
+                        <strong>R$ 20,00</strong>
+                        <button class="btn" onclick="pedir('Arroz, Feijão e Carne')">
+                            Pedir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="imagem">🥩</div>
+
+                <div class="conteudo">
+                    <h3>Frango Grelhado</h3>
+                    <p>Frango grelhado acompanhado de arroz e salada.</p>
+
+                    <div class="preco">
+                        <strong>R$ 18,00</strong>
+                        <button class="btn" onclick="pedir('Frango Grelhado')">
+                            Pedir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="imagem">🍝</div>
+
+                <div class="conteudo">
+                    <h3>Macarronada</h3>
+                    <p>Macarrão com molho especial da casa.</p>
+
+                    <div class="preco">
+                        <strong>R$ 22,00</strong>
+                        <button class="btn" onclick="pedir('Macarronada')">
+                            Pedir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="categoria" id="bebidas">🥤 Bebidas</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="imagem">🥤</div>
+
+                <div class="conteudo">
+                    <h3>Refrigerante</h3>
+                    <p>Refrigerante gelado.</p>
+
+                    <div class="preco">
+                        <strong>R$ 5,00</strong>
+                        <button class="btn" onclick="pedir('Refrigerante')">
+                            Pedir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="imagem">🧃</div>
+
+                <div class="conteudo">
+                    <h3>Suco Natural</h3>
+                    <p>Suco natural preparado na hora.</p>
+
+                    <div class="preco">
+                        <strong>R$ 6,00</strong>
+                        <button class="btn" onclick="pedir('Suco Natural')">
+                            Pedir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="pedido" id="pedido">
+            <h2>📋 Faça seu pedido</h2>
+            <p>Escolha uma opção acima para adicionar ao seu pedido.</p>
+
+            <button onclick="finalizarPedido()">
+                Finalizar Pedido
+            </button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Restaurante Sabor Bom</p>
+        <p>Comida caseira feita com carinho ❤️</p>
+    </footer>
+
+    <script>
+        let pedidos = [];
+
+        function pedir(prato) {
+            pedidos.push(prato);
+
+            alert(
+                prato + " foi adicionado ao seu pedido!"
+            );
+        }
+
+        function finalizarPedido() {
+
+            if (pedidos.length === 0) {
+                alert("Seu pedido está vazio!");
+                return;
+            }
+
+            alert(
+                "Seu pedido:\n\n" +
+                pedidos.map((item, index) =>
+                    (index + 1) + ". " + item
+                ).join("\n") +
+                "\n\nObrigado pela preferência! 🍽️"
+            );
+        }
+    </script>
+
+</body>
+</html>

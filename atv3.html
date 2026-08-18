@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS — Plataforma Completa</title>
+
+<style>
+:root{
+    --bg:#080b14;
+    --panel:#111827;
+    --panel2:#151d2e;
+    --border:#263247;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --primary:#6366f1;
+    --primary2:#8b5cf6;
+    --success:#22c55e;
+    --danger:#ef4444;
+    --warning:#f59e0b;
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top left,rgba(99,102,241,.12),transparent 35%),
+        radial-gradient(circle at bottom right,rgba(139,92,246,.10),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    background:rgba(10,14,25,.92);
+    border-right:1px solid var(--border);
+    padding:22px 14px;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    z-index:20;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px 25px;
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    box-shadow:0 10px 30px rgba(99,102,241,.35);
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.menu button{
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    padding:13px 14px;
+    border-radius:12px;
+    text-align:left;
+    transition:.2s;
+}
+
+.menu button:hover,
+.menu button.active{
+    color:white;
+    background:linear-gradient(90deg,rgba(99,102,241,.2),rgba(139,92,246,.08));
+}
+
+.menu button.active{
+    border-left:3px solid var(--primary);
+}
+
+/* MAIN */
+
+.main{
+    margin-left:260px;
+    width:calc(100% - 260px);
+}
+
+.topbar{
+    height:75px;
+    border-bottom:1px solid var(--border);
+    background:rgba(8,11,20,.75);
+    backdrop-filter:blur(16px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.topbar-title{
+    font-weight:800;
+    font-size:19px;
+}
+
+.user{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#06b6d4,#6366f1);
+    font-weight:800;
+}
+
+.content{
+    padding:30px;
+}
+
+.page{
+    display:none;
+    animation:fade .25s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(5px)}
+    to{opacity:1;transform:none}
+}
+
+h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    gap:18px;
+}
+
+.grid-4{
+    grid-template-columns:repeat(4,1fr);
+}
+
+.grid-3{
+    grid-template-columns:repeat(3,1fr);
+}
+
+.grid-2{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.card{
+    background:linear-gradient(145deg,rgba(21,29,46,.96),rgba(12,17,29,.96));
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:var(--shadow);
+}
+
+.stat{
+    position:relative;
+    overflow:hidden;
+}
+
+.stat::after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    right:-40px;
+    top:-40px;
+    background:var(--primary);
+    filter:blur(45px);
+    opacity:.25;
+}
+
+.stat-icon{
+    font-size:25px;
+    margin-bottom:14px;
+}
+
+.stat-value{
+    font-size:30px;
+    font-weight:900;
+}
+
+.stat-label{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+/* BUTTONS */
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:10px 15px;
+    color:white;
+    background:#273449;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.1);
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+}
+
+.btn-success{
+    background:var(--success);
+}
+
+.btn-danger{
+    background:var(--danger);
+}
+
+.btn-warning{
+    background:var(--warning);
+    color:#111827;
+}
+
+/* INPUT */
+
+.input{
+    width:100%;
+    background:#0b1120;
+    border:1px solid var(--border);
+    color:white;
+    border-radius:10px;
+    padding:12px;
+    outline:none;
+}
+
+.input:focus{
+    border-color:var(--primary);
+}
+
+/* DASHBOARD */
+
+.chart{
+    height:260px;
+    display:flex;
+    align-items:flex-end;
+    gap:12px;
+    padding:20px 5px 0;
+}
+
+.bar{
+    flex:1;
+    min-width:20px;
+    background:linear-gradient(to top,var(--primary),var(--primary2));
+    border-radius:7px 7px 2px 2px;
+    position:relative;
+    transition:.3s;
+}
+
+.bar:hover{
+    filter:brightness(1.2);
+}
+
+.bar span{
+    position:absolute;
+    bottom:-25px;
+    width:100%;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* CHAT */
+
+.chat{
+    height:480px;
+    display:flex;
+    flex-direction:column;
+}
+
+.messages{
+    flex:1;
+    overflow-y:auto;
+    padding:10px;
+}
+
+.message{
+    max-width:75%;
+    padding:12px 15px;
+    border-radius:14px;
+    margin:8px 0;
+    line-height:1.45;
+}
+
+.message.bot{
+    background:#1d293d;
+}
+
+.message.user{
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    margin-left:auto;
+}
+
+.chat-input{
+    display:flex;
+    gap:10px;
+    border-top:1px solid var(--border);
+    padding-top:15px;
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.product{
+    overflow:hidden;
+}
+
+.product-image{
+    height:170px;
+    border-radius:14px;
+    background:
+        linear-gradient(135deg,rgba(99,102,241,.3),rgba(139,92,246,.15)),
+        #0b1120;
+    display:grid;
+    place-items:center;
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+.product h3{
+    margin-bottom:6px;
+}
+
+.price{
+    color:#a5b4fc;
+    font-size:20px;
+    font-weight:900;
+    margin:10px 0 14px;
+}
+
+/* TABLE */
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table th,
+.table td{
+    padding:13px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+}
+
+.table th{
+    color:var(--muted);
+}
+
+/* MAP */
+
+.map{
+    height:430px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(30deg,transparent 48%,rgba(148,163,184,.12) 49%,rgba(148,163,184,.12) 51%,transparent 52%),
+        linear-gradient(120deg,transparent 48%,rgba(148,163,184,.1) 49%,rgba(148,163,184,.1) 51%,transparent 52%),
+        #101827;
+    background-size:90px 90px;
+}
+
+.map::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(90deg,transparent 49%,rgba(56,189,248,.12) 50%,transparent 51%);
+    background-size:130px 130px;
+}
+
+.marker{
+    position:absolute;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#ef4444;
+    border:4px solid white;
+    box-shadow:0 0 25px #ef4444;
+}
+
+/* GAME */
+
+.game-wrap{
+    text-align:center;
+}
+
+#game{
+    width:100%;
+    max-width:800px;
+    height:430px;
+    background:#050812;
+    border:1px solid var(--border);
+    border-radius:18px;
+    display:block;
+    margin:auto;
+}
+
+.game-info{
+    margin-top:15px;
+    color:var(--muted);
+}
+
+/* PASSWORD */
+
+.password-box{
+    font-size:22px;
+    background:#080c16;
+    border:1px solid var(--border);
+    padding:18px;
+    border-radius:12px;
+    word-break:break-all;
+    margin:15px 0;
+    color:#a5b4fc;
+}
+
+/* CART */
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.total{
+    font-size:25px;
+    font-weight:900;
+    margin-top:20px;
+}
+
+/* NOTIFICATION */
+
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background:#172033;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:15px 18px;
+    box-shadow:var(--shadow);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+    z-index:100;
+}
+
+.toast.show{
+    transform:none;
+    opacity:1;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+    .grid-4{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+    .sidebar{
+        width:72px;
+        padding:12px 8px;
+    }
+
+    .logo strong{
+        display:none;
+    }
+
+    .logo{
+        justify-content:center;
+    }
+
+    .menu button{
+        font-size:0;
+        text-align:center;
+    }
+
+    .menu button::first-letter{
+        font-size:20px;
+    }
+
+    .main{
+        margin-left:72px;
+        width:calc(100% - 72px);
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .grid-4,
+    .grid-3,
+    .grid-2,
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <span>✦</span>
+        <strong>NEXUS</strong>
+    </div>
+
+    <nav class="menu">
+
+        <button class="active" onclick="showPage('dashboard',this)">
+            📊 Dashboard
+        </button>
+
+        <button onclick="showPage('chat',this)">
+            🤖 IA / Chatbot
+        </button>
+
+        <button onclick="showPage('maps',this)">
+            🗺️ Mapas
+        </button>
+
+        <button onclick="showPage('game',this)">
+            🎮 Jogo
+        </button>
+
+        <button onclick="showPage('passwords',this)">
+            🔐 Senhas
+        </button>
+
+        <button onclick="showPage('recommendations',this)">
+            🧠 Recomendações
+        </button>
+
+        <button onclick="showPage('shop',this)">
+            🛒 E-commerce
+        </button>
+
+        <button onclick="showPage('cart',this)">
+            🛍️ Carrinho
+        </button>
+
+    </nav>
+
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+
+    <div class="topbar-title" id="pageTitle">
+        Dashboard
+    </div>
+
+    <div class="user">
+        <span id="userName">Usuário</span>
+        <div class="avatar">U</div>
+    </div>
+
+</header>
+
+<section class="content">
+
+<!-- DASHBOARD -->
+
+<div class="page active" id="dashboard">
+
+    <h1>Olá, usuário 👋</h1>
+
+    <p class="subtitle">
+        Bem-vindo ao centro de controle do Nexus.
+    </p>
+
+    <div class="grid grid-4">
+
+        <div class="card stat">
+            <div class="stat-icon">💰</div>
+            <div class="stat-value" id="salesValue">
+                R$ 0
+            </div>
+            <div class="stat-label">
+                Vendas
+            </div>
+        </div>
+
+        <div class="card stat">
+            <div class="stat-icon">🛒</div>
+            <div class="stat-value" id="ordersValue">
+                0
+            </div>
+            <div class="stat-label">
+                Pedidos
+            </div>
+        </div>
+
+        <div class="card stat">
+            <div class="stat-icon">🤖</div>
+            <div class="stat-value" id="messagesValue">
+                0
+            </div>
+            <div class="stat-label">
+                Mensagens
+            </div>
+        </div>
+
+        <div class="card stat">
+            <div class="stat-icon">🎮</div>
+            <div class="stat-value" id="highScore">
+                0
+            </div>
+            <div class="stat-label">
+                Recorde
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="grid grid-2">
+
+        <div class="card">
+
+            <h3>Atividade</h3>
+
+            <div class="chart">
+
+                <div class="bar" style="height:35%">
+                    <span>Seg</span>
+                </div>
+
+                <div class="bar" style="height:50%">
+                    <span>Ter</span>
+                </div>
+
+                <div class="bar" style="height:42%">
+                    <span>Qua</span>
+                </div>
+
+                <div class="bar" style="height:75%">
+                    <span>Qui</span>
+                </div>
+
+                <div class="bar" style="height:60%">
+                    <span>Sex</span>
+                </div>
+
+                <div class="bar" style="height:88%">
+                    <span>Sáb</span>
+                </div>
+
+                <div class="bar" style="height:70%">
+                    <span>Dom</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Atividade recente</h3>
+
+            <br>
+
+            <p>🤖 Chatbot utilizado</p>
+            <br>
+
+            <p>🛒 Produto adicionado ao carrinho</p>
+            <br>
+
+            <p>🔐 Nova senha gerada</p>
+            <br>
+
+            <p>🎮 Jogo iniciado</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CHAT -->
+
+<div class="page" id="chat">
+
+    <h1>🤖 Nexus AI</h1>
+
+    <p class="subtitle">
+        Assistente inteligente integrado à plataforma.
+    </p>
+
+    <div class="card chat">
+
+        <div class="messages" id="messages">
+
+            <div class="message bot">
+                Olá! Eu sou o Nexus AI. Como posso ajudar?
+            </div>
+
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                class="input"
+                id="chatInput"
+                placeholder="Digite sua mensagem..."
+                onkeydown="if(event.key==='Enter') sendMessage()"
+            >
+
+            <button
+                class="btn btn-primary"
+                onclick="sendMessage()"
+            >
+                Enviar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MAPS -->
+
+<div class="page" id="maps">
+
+    <h1>🗺️ Mapas</h1>
+
+    <p class="subtitle">
+        Sistema de localização visual.
+    </p>
+
+    <div class="card">
+
+        <div style="display:flex;gap:10px;margin-bottom:15px">
+
+            <input
+                class="input"
+                id="locationInput"
+                placeholder="Digite uma localização"
+            >
+
+            <button
+                class="btn btn-primary"
+                onclick="findLocation()"
+            >
+                Buscar
+            </button>
+
+        </div>
+
+        <div class="map" id="map">
+
+            <div
+                class="marker"
+                style="left:52%;top:43%"
+                title="Localização"
+            ></div>
+
+        </div>
+
+        <p id="locationResult" class="subtitle" style="margin-top:15px">
+            Mapa demonstrativo. Para mapas reais, conecte uma API de mapas.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- GAME -->
+
+<div class="page" id="game">
+
+    <h1>🎮 Nexus Game</h1>
+
+    <p class="subtitle">
+        Use as setas ou WASD para movimentar o personagem.
+    </p>
+
+    <div class="card game-wrap">
+
+        <canvas id="gameCanvas"></canvas>
+
+        <div class="game-info">
+            Pontos: <strong id="gameScore">0</strong>
+            &nbsp; | &nbsp;
+            Pegue os pontos amarelos.
+        </div>
+
+        <br>
+
+        <button class="btn btn-primary" onclick="startGame()">
+            Iniciar / Reiniciar
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PASSWORDS -->
+
+<div class="page" id="passwords">
+
+    <h1>🔐 Cofre de Senhas</h1>
+
+    <p class="subtitle">
+        Gerador local de senhas fortes.
+    </p>
+
+    <div class="card">
+
+        <label>Tamanho</label>
+
+        <input
+            class="input"
+            id="passwordLength"
+            type="number"
+            value="20"
+            min="8"
+            max="100"
+            style="margin-top:8px"
+        >
+
+        <br><br>
+
+        <button
+            class="btn btn-primary"
+            onclick="generatePassword()"
+        >
+            Gerar senha
+        </button>
+
+        <div class="password-box" id="generatedPassword">
+            Clique em "Gerar senha".
+        </div>
+
+        <button
+            class="btn"
+            onclick="copyPassword()"
+        >
+            📋 Copiar
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- RECOMMENDATIONS -->
+
+<div class="page" id="recommendations">
+
+    <h1>🧠 Recomendações</h1>
+
+    <p class="subtitle">
+        Recomendações baseadas nas suas interações.
+    </p>
+
+    <div class="products" id="recommendedProducts"></div>
+
+</div>
+
+
+<!-- SHOP -->
+
+<div class="page" id="shop">
+
+    <h1>🛒 Nexus Store</h1>
+
+    <p class="subtitle">
+        Loja integrada à plataforma.
+    </p>
+
+    <div style="margin-bottom:20px">
+
+        <input
+            class="input"
+            id="searchProduct"
+            placeholder="Pesquisar produtos..."
+            oninput="renderProducts()"
+        >
+
+    </div>
+
+    <div class="products" id="products"></div>
+
+</div>
+
+
+<!-- CART -->
+
+<div class="page" id="cart">
+
+    <h1>🛍️ Carrinho</h1>
+
+    <p class="subtitle">
+        Seus produtos.
+    </p>
+
+    <div class="card">
+
+        <div id="cartItems"></div>
+
+        <div class="total" id="cartTotal">
+            Total: R$ 0,00
+        </div>
+
+        <br>
+
+        <button
+            class="btn btn-success"
+            onclick="checkout()"
+        >
+            Finalizar pedido
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* ============================
+   STORAGE
+============================ */
+
+const storage = {
+
+    get(key, fallback){
+
+        try{
+            const value = localStorage.getItem(key);
+
+            return value === null
+                ? fallback
+                : JSON.parse(value);
+
+        }catch{
+            return fallback;
+        }
+
+    },
+
+    set(key,value){
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(value)
+        );
+
+    }
+
+};
+
+
+/* ============================
+   GLOBAL STATE
+============================ */
+
+let cart = storage.get("nexus_cart", []);
+
+let stats = storage.get("nexus_stats", {
+    sales:0,
+    orders:0,
+    messages:0
+});
+
+let highScore = storage.get("nexus_highscore",0);
+
+
+/* ============================
+   PRODUCTS
+============================ */
+
+const products = [
+
+    {
+        id:1,
+        name:"Notebook Pro",
+        price:4999.90,
+        icon:"💻",
+        category:"Tecnologia"
+    },
+
+    {
+        id:2,
+        name:"Smartphone X",
+        price:2999.90,
+        icon:"📱",
+        category:"Tecnologia"
+    },
+
+    {
+        id:3,
+        name:"Headphone Premium",
+        price:799.90,
+        icon:"🎧",
+        category:"Áudio"
+    },
+
+    {
+        id:4,
+        name:"Smart Watch",
+        price:599.90,
+        icon:"⌚",
+        category:"Tecnologia"
+    },
+
+    {
+        id:5,
+        name:"Câmera Pro",
+        price:3499.90,
+        icon:"📷",
+        category:"Fotografia"
+    },
+
+    {
+        id:6,
+        name:"Console Gamer",
+        price:4299.90,
+        icon:"🎮",
+        category:"Games"
+    }
+
+];
+
+
+/* ============================
+   NAVIGATION
+============================ */
+
+function showPage(id, button){
+
+    document.querySelectorAll(".page")
+        .forEach(page => page.classList.remove("active"));
+
+    document.getElementById(id)
+        .classList.add("active");
+
+    document.querySelectorAll(".menu button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    const titles = {
+
+        dashboard:"Dashboard",
+        chat:"Nexus AI",
+        maps:"Mapas",
+        game:"Nexus Game",
+        passwords:"Cofre de Senhas",
+        recommendations:"Recomendações",
+        shop:"Nexus Store",
+        cart:"Carrinho"
+
+    };
+
+    document.getElementById("pageTitle")
+        .textContent = titles[id] || "Nexus";
+
+    if(id === "cart"){
+        renderCart();
+    }
+
+    if(id === "recommendations"){
+        renderRecommendations();
+    }
+
+}
+
+
+/* ============================
+   TOAST
+============================ */
+
+function toast(text){
+
+    const el = document.getElementById("toast");
+
+    el.textContent = text;
+
+    el.classList.add("show");
+
+    setTimeout(()=>{
+        el.classList.remove("show");
+    },2500);
+
+}
+
+
+/* ============================
+   DASHBOARD
+============================ */
+
+function updateDashboard(){
+
+    document.getElementById("salesValue")
+        .textContent =
+        "R$ " +
+        stats.sales.toLocaleString("pt-BR",{
+            minimumFractionDigits:2
+        });
+
+    document.getElementById("ordersValue")
+        .textContent = stats.orders;
+
+    document.getElementById("messagesValue")
+        .textContent = stats.messages;
+
+    document.getElementById("highScore")
+        .textContent = highScore;
+
+}
+
+
+/* ============================
+   CHATBOT
+============================ */
+
+function sendMessage(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+    if(!text) return;
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.innerHTML += `
+        <div class="message user">
+            ${escapeHTML(text)}
+        </div>
+    `;
+
+    input.value="";
+
+    stats.messages++;
+
+    storage.set("nexus_stats",stats);
+
+    updateDashboard();
+
+    setTimeout(()=>{
+
+        const answer = getAIResponse(text);
+
+        messages.innerHTML += `
+            <div class="message bot">
+                ${answer}
+            </div>
+        `;
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+    },500);
+
+}
+
+
+function getAIResponse(text){
+
+    const t = text.toLowerCase();
+
+    if(t.includes("olá") || t.includes("oi")){
+        return "Olá! 👋 Posso ajudar com a loja, senhas, dashboard, jogo ou recomendações.";
+    }
+
+    if(t.includes("produto")){
+        return "🛒 Temos notebooks, smartphones, headphones, smartwatches, câmeras e consoles.";
+    }
+
+    if(t.includes("senha")){
+        return "🔐 Vá até o módulo Cofre de Senhas para gerar uma senha forte localmente.";
+    }
+
+    if(t.includes("jogo")){
+        return "🎮 O Nexus Game está disponível no menu lateral.";
+    }
+
+    if(t.includes("mapa")){
+        return "🗺️ O módulo Mapas está disponível no menu lateral.";
+    }
+
+    if(t.includes("recomend")){
+        return "🧠 Posso recomendar produtos com base nas categorias que você visualiza.";
+    }
+
+    return "Entendi! 🤖 Esta versão funciona localmente. Para respostas realmente inteligentes, conecte uma API de IA no backend.";
+}
+
+
+/* ============================
+   PRODUCTS
+============================ */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById("products");
+
+    const search =
+        document.getElementById("searchProduct")
+        .value
+        .toLowerCase();
+
+    const filtered =
+        products.filter(product =>
+            product.name.toLowerCase().includes(search) ||
+            product.category.toLowerCase().includes(search)
+        );
+
+    container.innerHTML =
+        filtered.map(product => `
+
+        <div class="card product">
+
+            <div class="product-image">
+                ${product.icon}
+            </div>
+
+            <h3>${product.name}</h3>
+
+            <p class="subtitle">
+                ${product.category}
+            </p>
+
+            <div class="price">
+                ${formatMoney(product.price)}
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="addToCart(${product.id})"
+            >
+                Adicionar ao carrinho
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+function addToCart(id){
+
+    const product =
+        products.find(p => p.id === id);
+
+    const existing =
+        cart.find(item => item.id === id);
+
+    if(existing){
+        existing.quantity++;
+    }else{
+        cart.push({
+            ...product,
+            quantity:1
+        });
+    }
+
+    storage.set("nexus_cart",cart);
+
+    toast("Produto adicionado ao carrinho 🛒");
+
+    renderCart();
+
+}
+
+
+/* ============================
+   CART
+============================ */
+
+function renderCart(){
+
+    const container =
+        document.getElementById("cartItems");
+
+    if(cart.length === 0){
+
+        container.innerHTML = `
+            <p class="subtitle">
+                Seu carrinho está vazio.
+            </p>
+        `;
+
+        document.getElementById("cartTotal")
+            .textContent = "Total: R$ 0,00";
+
+        return;
+    }
+
+    container.innerHTML =
+        cart.map(item => `
+
+        <div class="cart-item">
+
+            <div>
+                <strong>
+                    ${item.icon} ${item.name}
+                </strong>
+
+                <p class="subtitle">
+                    Quantidade: ${item.quantity}
+                </p>
+            </div>
+
+            <div>
+                ${formatMoney(item.price * item.quantity)}
+            </div>
+
+            <button
+                class="btn btn-danger"
+                onclick="removeFromCart(${item.id})"
+            >
+                Remover
+            </button>
+
+        </div>
+
+    `).join("");
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.price * item.quantity,
+            0
+        );
+
+    document.getElementById("cartTotal")
+        .textContent =
+        "Total: " + formatMoney(total);
+
+}
+
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(item => item.id !== id);
+
+    storage.set("nexus_cart",cart);
+
+    renderCart();
+
+}
+
+
+function checkout(){
+
+    if(cart.length === 0){
+
+        toast("Seu carrinho está vazio.");
+
+        return;
+
+    }
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.price * item.quantity,
+            0
+        );
+
+    stats.sales += total;
+    stats.orders++;
+
+    storage.set("nexus_stats",stats);
+
+    cart=[];
+
+    storage.set("nexus_cart",cart);
+
+    renderCart();
+
+    updateDashboard();
+
+    toast("Pedido realizado com sucesso! 🎉");
+
+}
+
+
+/* ============================
+   RECOMMENDATIONS
+============================ */
+
+function renderRecommendations(){
+
+    const container =
+        document.getElementById(
+            "recommendedProducts"
+        );
+
+    const recommended =
+        products.slice(0,3);
+
+    container.innerHTML =
+        recommended.map(product => `
+
+        <div class="card product">
+
+            <div class="product-image">
+                ${product.icon}
+            </div>
+
+            <h3>${product.name}</h3>
+
+            <p class="subtitle">
+                Recomendado para você
+            </p>
+
+            <div class="price">
+                ${formatMoney(product.price)}
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="addToCart(${product.id})"
+            >
+                Comprar
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* ============================
+   PASSWORD GENERATOR
+============================ */
+
+function generatePassword(){
+
+    const length =
+        Math.min(
+            100,
+            Math.max(
+                8,
+                Number(
+                    document.getElementById(
+                        "passwordLength"
+                    ).value
+                )
+            )
+        );
+
+    const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+        "abcdefghijklmnopqrstuvwxyz" +
+        "0123456789" +
+        "!@#$%^&*()_+-=[]{}<>?";
+
+    let password="";
+
+    const random =
+        new Uint32Array(length);
+
+    crypto.getRandomValues(random);
+
+    for(let i=0;i<length;i++){
+
+        password +=
+            chars[random[i] % chars.length];
+
+    }
+
+    document.getElementById(
+        "generatedPassword"
+    ).textContent = password;
+
+}
+
+
+function copyPassword(){
+
+    const password =
+        document.getElementById(
+            "generatedPassword"
+        ).textContent;
+
+    if(
+        !password ||
+        password === "Clique em \"Gerar senha\"."
+    ){
+
+        toast("Gere uma senha primeiro.");
+
+        return;
+
+    }
+
+    navigator.clipboard.writeText(password)
+        .then(()=>toast("Senha copiada! 🔐"))
+        .catch(()=>toast("Não foi possível copiar."));
+
+}
+
+
+/* ============================
+   MAP
+============================ */
+
+function findLocation(){
+
+    const input =
+        document.getElementById(
+            "locationInput"
+        );
+
+    const result =
+        document.getElementById(
+            "locationResult"
+        );
+
+    const value =
+        input.value.trim();
+
+    if(!value){
+
+        result.textContent =
+            "Digite uma localização.";
+
+        return;
+
+    }
+
+    result.textContent =
+        "📍 Localização pesquisada: " + value;
+
+    toast("Localização encontrada 📍");
+
+}
+
+
+/* ============================
+   GAME
+============================ */
+
+const canvas =
+    document.getElementById("gameCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+let gameRunning=false;
+let gameScore=0;
+
+let player={
+    x:100,
+    y:100,
+    size:25,
+    speed:4
+};
+
+let coin={
+    x:400,
+    y:200,
+    size:15
+};
+
+const keys={};
+
+document.addEventListener("keydown",e=>{
+    keys[e.key.toLowerCase()] = true;
+});
+
+document.addEventListener("keyup",e=>{
+    keys[e.key.toLowerCase()] = false;
+});
+
+
+function resizeCanvas(){
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    canvas.width =
+        Math.floor(rect.width);
+
+    canvas.height =
+        Math.floor(rect.height);
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+function startGame(){
+
+    gameRunning=true;
+
+    gameScore=0;
+
+    player.x=80;
+    player.y=80;
+
+    placeCoin();
+
+    document.getElementById(
+        "gameScore"
+    ).textContent=gameScore;
+
+}
+
+
+function placeCoin(){
+
+    coin.x =
+        30 +
+        Math.random() *
+        Math.max(30,canvas.width-60);
+
+    coin.y =
+        30 +
+        Math.random() *
+        Math.max(30,canvas.height-60);
+
+}
+
+
+function gameLoop(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    // fundo
+
+    ctx.fillStyle="#050812";
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    // grid
+
+    ctx.strokeStyle="rgba(99,102,241,.08)";
+
+    for(
+        let x=0;
+        x<canvas.width;
+        x+=40
+    ){
+
+        ctx.beginPath();
+        ctx.moveTo(x,0);
+        ctx.lineTo(x,canvas.height);
+        ctx.stroke();
+
+    }
+
+    for(
+        let y=0;
+        y<canvas.height;
+        y+=40
+    ){
+
+        ctx.beginPath();
+        ctx.moveTo(0,y);
+        ctx.lineTo(canvas.width,y);
+        ctx.stroke();
+
+    }
+
+    if(gameRunning){
+
+        if(keys["arrowup"] || keys["w"])
+            player.y -= player.speed;
+
+        if(keys["arrowdown"] || keys["s"])
+            player.y += player.speed;
+
+        if(keys["arrowleft"] || keys["a"])
+            player.x -= player.speed;
+
+        if(keys["arrowright"] || keys["d"])
+            player.x += player.speed;
+
+        player.x =
+            Math.max(
+                0,
+                Math.min(
+                    canvas.width-player.size,
+                    player.x
+                )
+            );
+
+        player.y =
+            Math.max(
+                0,
+                Math.min(
+                    canvas.height-player.size,
+                    player.y
+                )
+            );
+
+        const distance =
+            Math.hypot(
+                player.x-coin.x,
+                player.y-coin.y
+            );
+
+        if(distance < 30){
+
+            gameScore++;
+
+            document.getElementById(
+                "gameScore"
+            ).textContent=gameScore;
+
+            if(gameScore > highScore){
+
+                highScore=gameScore;
+
+                storage.set(
+                    "nexus_highscore",
+                    highScore
+                );
+
+                updateDashboard();
+
+            }
+
+            placeCoin();
+
+        }
+
+    }
+
+    // coin
+
+    ctx.beginPath();
+
+    ctx.arc(
+        coin.x,
+        coin.y,
+        coin.size,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fillStyle="#facc15";
+
+    ctx.shadowColor="#facc15";
+    ctx.shadowBlur=20;
+
+    ctx.fill();
+
+    ctx.shadowBlur=0;
+
+    // player
+
+    ctx.fillStyle="#6366f1";
+
+    ctx.shadowColor="#6366f1";
+    ctx.shadowBlur=20;
+
+    ctx.fillRect(
+        player.x,
+        player.y,
+        player.size,
+        player.size
+    );
+
+    ctx.shadowBlur=0;
+
+    requestAnimationFrame(gameLoop);
+
+}
+
+gameLoop();
+
+
+/* ============================
+   HELPERS
+============================ */
+
+function formatMoney(value){
+
+    return value.toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent=value;
+
+    return div.innerHTML;
+
+}
+
+
+/* ============================
+   INITIALIZATION
+============================ */
+
+renderProducts();
+
+renderCart();
+
+renderRecommendations();
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>
