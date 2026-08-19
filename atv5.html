@@ -35,10 +35,28 @@
             font-size: 18px;
         }
 
+        /* STATUS */
+        .status {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            background: #28a745;
+            color: white;
+        }
+
+        .fechado {
+            background: #dc3545;
+        }
+
         nav {
             background: #5f2019;
             padding: 15px;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         nav a {
@@ -71,6 +89,41 @@
         .titulo p {
             margin-top: 8px;
             color: #666;
+        }
+
+        /* HORÁRIOS */
+        .horarios {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .horarios h2 {
+            color: #8b2f23;
+            margin-bottom: 15px;
+        }
+
+        .horario {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .horario:last-child {
+            border-bottom: none;
+        }
+
+        .aberto {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .fechado-texto {
+            color: #dc3545;
+            font-weight: bold;
         }
 
         .categoria {
@@ -148,28 +201,71 @@
             background: #5f2019;
         }
 
+        .btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        /* CARRINHO */
         .pedido {
             background: #8b2f23;
             color: white;
-            text-align: center;
-            padding: 35px 20px;
+            padding: 30px;
             margin-top: 50px;
             border-radius: 15px;
         }
 
         .pedido h2 {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
-        .pedido button {
+        #listaPedido {
             margin-top: 20px;
+        }
+
+        .item-pedido {
+            background: white;
+            color: #333;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remover {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .finalizar {
+            display: block;
+            margin: 20px auto 0;
             background: #ffd166;
             color: #5f2019;
             border: none;
-            padding: 12px 25px;
+            padding: 13px 25px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
+            font-size: 16px;
+        }
+
+        .finalizar:hover {
+            background: #ffbd2e;
         }
 
         footer {
@@ -189,165 +285,718 @@
                 margin: 0 7px;
                 font-size: 14px;
             }
+
+            .horario {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🍽️ Restaurante Sabor Bom</h1>
-        <p>Comida caseira com muito sabor!</p>
-    </header>
+<header>
 
-    <nav>
-        <a href="#pratos">Pratos</a>
-        <a href="#bebidas">Bebidas</a>
-        <a href="#pedido">Pedido</a>
-    </nav>
+    <h1>🍽️ Restaurante Sabor Bom</h1>
 
-    <main class="container">
+    <p>Comida caseira com muito sabor!</p>
 
-        <section class="titulo">
-            <h2>Nosso Cardápio</h2>
-            <p>Confira nossas opções e escolha seu prato favorito.</p>
-        </section>
+    <div id="statusRestaurante" class="status">
+        Verificando...
+    </div>
 
-        <h2 class="categoria" id="pratos">🍛 Pratos Principais</h2>
+</header>
 
-        <div class="cards">
 
-            <div class="card">
-                <div class="imagem">🍛</div>
+<nav>
+    <a href="#pratos">Pratos</a>
+    <a href="#bebidas">Bebidas</a>
+    <a href="#horarios">Horários</a>
+    <a href="#pedido">🛒 Pedido</a>
+</nav>
 
-                <div class="conteudo">
-                    <h3>Arroz, Feijão e Carne</h3>
-                    <p>O clássico prato caseiro com arroz, feijão e carne.</p>
 
-                    <div class="preco">
-                        <strong>R$ 20,00</strong>
-                        <button class="btn" onclick="pedir('Arroz, Feijão e Carne')">
-                            Pedir
-                        </button>
-                    </div>
+<main class="container">
+
+    <section class="titulo">
+
+        <h2>Nosso Cardápio</h2>
+
+        <p>
+            Confira nossas opções e escolha seu prato favorito.
+        </p>
+
+    </section>
+
+
+    <!-- HORÁRIO DE FUNCIONAMENTO -->
+
+    <section class="horarios" id="horarios">
+
+        <h2>🕐 Horário de Funcionamento</h2>
+
+        <div class="horario">
+            <span>Segunda-feira</span>
+            <strong>11:00 - 22:00</strong>
+        </div>
+
+        <div class="horario">
+            <span>Terça-feira</span>
+            <strong>11:00 - 22:00</strong>
+        </div>
+
+        <div class="horario">
+            <span>Quarta-feira</span>
+            <strong>11:00 - 22:00</strong>
+        </div>
+
+        <div class="horario">
+            <span>Quinta-feira</span>
+            <strong>11:00 - 22:00</strong>
+        </div>
+
+        <div class="horario">
+            <span>Sexta-feira</span>
+            <strong>11:00 - 23:00</strong>
+        </div>
+
+        <div class="horario">
+            <span>Sábado</span>
+            <strong>11:00 - 23:00</strong>
+        </div>
+
+        <div class="horario">
+            <span>Domingo</span>
+            <strong class="fechado-texto">Fechado</strong>
+        </div>
+
+    </section>
+
+
+    <!-- PRATOS -->
+
+    <h2 class="categoria" id="pratos">
+        🍛 Pratos Principais
+    </h2>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="imagem">🍛</div>
+
+            <div class="conteudo">
+
+                <h3>Arroz, Feijão e Carne</h3>
+
+                <p>
+                    O clássico prato caseiro com arroz,
+                    feijão e carne.
+                </p>
+
+                <div class="preco">
+
+                    <strong>R$ 20,00</strong>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarPedido('Arroz, Feijão e Carne', 20)">
+                        Pedir
+                    </button>
+
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="imagem">🥩</div>
-
-                <div class="conteudo">
-                    <h3>Frango Grelhado</h3>
-                    <p>Frango grelhado acompanhado de arroz e salada.</p>
-
-                    <div class="preco">
-                        <strong>R$ 18,00</strong>
-                        <button class="btn" onclick="pedir('Frango Grelhado')">
-                            Pedir
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="imagem">🍝</div>
-
-                <div class="conteudo">
-                    <h3>Macarronada</h3>
-                    <p>Macarrão com molho especial da casa.</p>
-
-                    <div class="preco">
-                        <strong>R$ 22,00</strong>
-                        <button class="btn" onclick="pedir('Macarronada')">
-                            Pedir
-                        </button>
-                    </div>
-                </div>
             </div>
 
         </div>
 
-        <h2 class="categoria" id="bebidas">🥤 Bebidas</h2>
 
-        <div class="cards">
+        <div class="card">
 
-            <div class="card">
-                <div class="imagem">🥤</div>
+            <div class="imagem">🍗</div>
 
-                <div class="conteudo">
-                    <h3>Refrigerante</h3>
-                    <p>Refrigerante gelado.</p>
+            <div class="conteudo">
 
-                    <div class="preco">
-                        <strong>R$ 5,00</strong>
-                        <button class="btn" onclick="pedir('Refrigerante')">
-                            Pedir
-                        </button>
-                    </div>
+                <h3>Frango Grelhado</h3>
+
+                <p>
+                    Frango grelhado acompanhado
+                    de arroz e salada.
+                </p>
+
+                <div class="preco">
+
+                    <strong>R$ 18,00</strong>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarPedido('Frango Grelhado', 18)">
+                        Pedir
+                    </button>
+
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="imagem">🧃</div>
-
-                <div class="conteudo">
-                    <h3>Suco Natural</h3>
-                    <p>Suco natural preparado na hora.</p>
-
-                    <div class="preco">
-                        <strong>R$ 6,00</strong>
-                        <button class="btn" onclick="pedir('Suco Natural')">
-                            Pedir
-                        </button>
-                    </div>
-                </div>
             </div>
 
         </div>
 
-        <section class="pedido" id="pedido">
-            <h2>📋 Faça seu pedido</h2>
-            <p>Escolha uma opção acima para adicionar ao seu pedido.</p>
 
-            <button onclick="finalizarPedido()">
-                Finalizar Pedido
-            </button>
-        </section>
+        <div class="card">
 
-    </main>
+            <div class="imagem">🍝</div>
 
-    <footer>
-        <p>© 2026 Restaurante Sabor Bom</p>
-        <p>Comida caseira feita com carinho ❤️</p>
-    </footer>
+            <div class="conteudo">
 
-    <script>
-        let pedidos = [];
+                <h3>Macarronada</h3>
 
-        function pedir(prato) {
-            pedidos.push(prato);
+                <p>
+                    Macarrão com molho especial
+                    da casa.
+                </p>
 
-            alert(
-                prato + " foi adicionado ao seu pedido!"
-            );
+                <div class="preco">
+
+                    <strong>R$ 22,00</strong>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarPedido('Macarronada', 22)">
+                        Pedir
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BEBIDAS -->
+
+    <h2 class="categoria" id="bebidas">
+        🥤 Bebidas
+    </h2>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="imagem">🥤</div>
+
+            <div class="conteudo">
+
+                <h3>Refrigerante</h3>
+
+                <p>
+                    Refrigerante gelado.
+                </p>
+
+                <div class="preco">
+
+                    <strong>R$ 5,00</strong>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarPedido('Refrigerante', 5)">
+                        Pedir
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="imagem">🧃</div>
+
+            <div class="conteudo">
+
+                <h3>Suco Natural</h3>
+
+                <p>
+                    Suco natural preparado na hora.
+                </p>
+
+                <div class="preco">
+
+                    <strong>R$ 6,00</strong>
+
+                    <button
+                        class="btn"
+                        onclick="adicionarPedido('Suco Natural', 6)">
+                        Pedir
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PEDIDO -->
+
+    <section class="pedido" id="pedido">
+
+        <h2>🛒 Meu Pedido</h2>
+
+        <p id="mensagemPedido">
+            Seu carrinho está vazio.
+        </p>
+
+        <div id="listaPedido"></div>
+
+        <div class="total">
+            Total: R$ <span id="total">0,00</span>
+        </div>
+
+        <button
+            class="finalizar"
+            onclick="finalizarPedido()">
+
+            Finalizar Pedido
+
+        </button>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Restaurante Sabor Bom
+    </p>
+
+    <p>
+        Comida caseira feita com carinho ❤️
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+    ==========================================
+       CONFIGURAÇÃO DO RESTAURANTE
+    ==========================================
+    */
+
+    const horarios = {
+
+        0: null, // Domingo fechado
+
+        1: ["11:00", "22:00"], // Segunda
+
+        2: ["11:00", "22:00"], // Terça
+
+        3: ["11:00", "22:00"], // Quarta
+
+        4: ["11:00", "22:00"], // Quinta
+
+        5: ["11:00", "23:00"], // Sexta
+
+        6: ["11:00", "23:00"]  // Sábado
+
+    };
+
+
+    let pedidos = [];
+
+
+    /*
+    ==========================================
+       VERIFICAR SE O RESTAURANTE ESTÁ ABERTO
+    ==========================================
+    */
+
+    function restauranteEstaAberto() {
+
+        const agora = new Date();
+
+        const dia = agora.getDay();
+
+        const horario = horarios[dia];
+
+        // Domingo
+        if (!horario) {
+            return false;
         }
 
-        function finalizarPedido() {
+        const horaAtual =
+            agora.getHours() * 60 +
+            agora.getMinutes();
 
-            if (pedidos.length === 0) {
-                alert("Seu pedido está vazio!");
-                return;
+
+        const [horaInicio, minutoInicio] =
+            horario[0].split(":").map(Number);
+
+
+        const [horaFim, minutoFim] =
+            horario[1].split(":").map(Number);
+
+
+        const inicio =
+            horaInicio * 60 +
+            minutoInicio;
+
+
+        const fim =
+            horaFim * 60 +
+            minutoFim;
+
+
+        return horaAtual >= inicio &&
+               horaAtual < fim;
+
+    }
+
+
+    /*
+    ==========================================
+       ATUALIZAR STATUS
+    ==========================================
+    */
+
+    function atualizarStatus() {
+
+        const status =
+            document.getElementById(
+                "statusRestaurante"
+            );
+
+
+        const aberto =
+            restauranteEstaAberto();
+
+
+        if (aberto) {
+
+            status.textContent =
+                "🟢 ABERTO AGORA";
+
+            status.classList.remove(
+                "fechado"
+            );
+
+        } else {
+
+            status.textContent =
+                "🔴 FECHADO AGORA";
+
+            status.classList.add(
+                "fechado"
+            );
+
+        }
+
+
+        atualizarBotoes();
+
+    }
+
+
+    /*
+    ==========================================
+       DESABILITAR BOTÕES QUANDO FECHADO
+    ==========================================
+    */
+
+    function atualizarBotoes() {
+
+        const botoes =
+            document.querySelectorAll(
+                ".btn"
+            );
+
+
+        const aberto =
+            restauranteEstaAberto();
+
+
+        botoes.forEach(botao => {
+
+            botao.disabled = !aberto;
+
+            if (aberto) {
+
+                botao.textContent =
+                    "Pedir";
+
+            } else {
+
+                botao.textContent =
+                    "Fechado";
+
             }
 
+        });
+
+    }
+
+
+    /*
+    ==========================================
+       ADICIONAR PEDIDO
+    ==========================================
+    */
+
+    function adicionarPedido(
+        nome,
+        preco
+    ) {
+
+        if (!restauranteEstaAberto()) {
+
             alert(
-                "Seu pedido:\n\n" +
-                pedidos.map((item, index) =>
-                    (index + 1) + ". " + item
-                ).join("\n") +
-                "\n\nObrigado pela preferência! 🍽️"
+                "🔴 O restaurante está fechado no momento.\n\n" +
+                "Confira nosso horário de funcionamento."
             );
+
+            return;
+
         }
-    </script>
+
+
+        pedidos.push({
+
+            nome: nome,
+
+            preco: preco
+
+        });
+
+
+        atualizarPedido();
+
+
+        alert(
+            nome +
+            " foi adicionado ao seu pedido! 🍽️"
+        );
+
+    }
+
+
+    /*
+    ==========================================
+       MOSTRAR PEDIDO
+    ==========================================
+    */
+
+    function atualizarPedido() {
+
+        const lista =
+            document.getElementById(
+                "listaPedido"
+            );
+
+
+        const mensagem =
+            document.getElementById(
+                "mensagemPedido"
+            );
+
+
+        const totalElemento =
+            document.getElementById(
+                "total"
+            );
+
+
+        lista.innerHTML = "";
+
+
+        if (pedidos.length === 0) {
+
+            mensagem.textContent =
+                "Seu carrinho está vazio.";
+
+            totalElemento.textContent =
+                "0,00";
+
+            return;
+
+        }
+
+
+        mensagem.textContent =
+            pedidos.length +
+            " item(ns) no seu pedido.";
+
+
+        let total = 0;
+
+
+        pedidos.forEach(
+            (pedido, index) => {
+
+                total += pedido.preco;
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "item-pedido";
+
+
+                item.innerHTML = `
+
+                    <span>
+                        ${pedido.nome}
+                        -
+                        R$ ${pedido.preco.toFixed(2).replace(".", ",")}
+                    </span>
+
+                    <button
+                        class="remover"
+                        onclick="removerPedido(${index})">
+
+                        Remover
+
+                    </button>
+
+                `;
+
+
+                lista.appendChild(item);
+
+            }
+        );
+
+
+        totalElemento.textContent =
+            total
+                .toFixed(2)
+                .replace(".", ",");
+
+    }
+
+
+    /*
+    ==========================================
+       REMOVER ITEM
+    ==========================================
+    */
+
+    function removerPedido(index) {
+
+        pedidos.splice(index, 1);
+
+        atualizarPedido();
+
+    }
+
+
+    /*
+    ==========================================
+       FINALIZAR PEDIDO
+    ==========================================
+    */
+
+    function finalizarPedido() {
+
+        if (pedidos.length === 0) {
+
+            alert(
+                "🛒 Seu pedido está vazio!"
+            );
+
+            return;
+
+        }
+
+
+        if (!restauranteEstaAberto()) {
+
+            alert(
+                "🔴 O restaurante está fechado.\n\n" +
+                "Não é possível finalizar o pedido agora."
+            );
+
+            return;
+
+        }
+
+
+        let total = 0;
+
+
+        let resumo =
+            "🍽️ RESTAURANTE SABOR BOM\n\n" +
+            "SEU PEDIDO:\n\n";
+
+
+        pedidos.forEach(
+            (pedido, index) => {
+
+                total += pedido.preco;
+
+
+                resumo +=
+                    (index + 1) +
+                    ". " +
+                    pedido.nome +
+                    " - R$ " +
+                    pedido.preco
+                        .toFixed(2)
+                        .replace(".", ",") +
+                    "\n";
+
+            }
+        );
+
+
+        resumo +=
+            "\nTOTAL: R$ " +
+            total
+                .toFixed(2)
+                .replace(".", ",");
+
+
+        resumo +=
+            "\n\nObrigado pela preferência! ❤️";
+
+
+        alert(resumo);
+
+    }
+
+
+    /*
+    ==========================================
+       INICIAR SISTEMA
+    ==========================================
+    */
+
+    atualizarStatus();
+
+
+    /*
+    Atualiza o status a cada minuto
+    */
+
+    setInterval(
+        atualizarStatus,
+        60000
+    );
+
+</script>
 
 </body>
 </html>
