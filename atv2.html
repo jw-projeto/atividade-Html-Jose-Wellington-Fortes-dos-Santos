@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minha Página Pessoal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #ffffff;
+
+            background:
+                radial-gradient(circle at top left, #123d91, transparent 35%),
+                radial-gradient(circle at bottom right, #7b1025, transparent 35%),
+                linear-gradient(135deg, #02050c, #071426, #031b17);
+
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* TÍTULO PRINCIPAL */
+        h1 {
+            text-align: center;
+            font-size: 52px;
+            margin-bottom: 45px;
+
+            color: #ffd000;
+
+            text-shadow:
+                0 0 10px #ffd000,
+                0 0 25px rgba(255, 208, 0, 0.5);
+        }
+
+        /* LINHA DECORATIVA */
+        .linha {
+            width: 300px;
+            height: 5px;
+            margin: -25px auto 40px;
+
+            background: linear-gradient(
+                90deg,
+                #4285f4,
+                #ea4335,
+                #fbbc05,
+                #34a853
+            );
+
+            border-radius: 10px;
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        /* SOBRE MIM */
+        .sobre h2 {
+            color: #2196f3;
+        }
+
+        .sobre p {
+            border-left: 5px solid #2196f3;
+        }
+
+        /* HOBBIES */
+        .hobbies h2 {
+            color: #00d26a;
+        }
+
+        .hobbies ul {
+            border-left: 5px solid #00d26a;
+            list-style-position: inside;
+        }
+
+        /* QUARTO OBJETIVO */
+        .objetivos h2 {
+            color: #ffd000;
+        }
+
+        .objetivos p {
+            border-left: 5px solid #ffd000;
+        }
+
+        /* CAIXAS */
+        p,
+        ul {
+            background: rgba(255, 255, 255, 0.06);
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+            backdrop-filter: blur(8px);
+        }
+
+        p {
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 14px 0;
+        }
+
+        li::marker {
+            color: #00d26a;
+        }
+
+        /* GOOGLE */
+        .google-section h2 {
+            color: #ff4b4b;
+        }
+
+        .google-link {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            padding: 25px;
+
+            text-decoration: none;
+            color: white;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border-left: 5px solid #ea4335;
+            border-radius: 15px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            transition: 0.3s ease;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .google-link:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 30px rgba(66, 133, 244, 0.25);
+        }
+
+        /* SÍMBOLO DO GOOGLE */
+        .google-logo {
+            font-size: 70px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #4285f4 20%,
+                #ea4335 40%,
+                #fbbc05 60%,
+                #34a853 80%
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+        }
+
+        .google-text {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .seta {
+            font-size: 30px;
+            color: #ffd000;
+        }
+
+        /* RODAPÉ */
+        footer {
+            text-align: center;
+
+            margin-top: 50px;
+            padding: 25px;
+
+            color: #ffd000;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+            font-size: 16px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 600px) {
+
+            body {
+                padding: 25px 15px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .linha {
+                width: 220px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            p {
+                font-size: 17px;
+            }
+
+            .google-logo {
+                font-size: 55px;
+            }
+
+            .google-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- TÍTULO -->
+        <h1>Minha Página Pessoal</h1>
+
+        <div class="linha"></div>
+
+
+        <!-- SOBRE MIM -->
+        <section class="sobre">
+
+            <h2>Sobre mim</h2>
+
+            <p>
+                Olá! Meu nome é Jw e estou aprendendo programação.
+                Tenho interesse em tecnologia e quero continuar
+                desenvolvendo meus conhecimentos e habilidades para
+                construir um futuro cada vez melhor.
+            </p>
+
+        </section>
+
+
+        <!-- HOBBIES -->
+        <section class="hobbies">
+
+            <h2>Meus hobbies</h2>
+
+            <ul>
+                <li>Jogar</li>
+                <li>Assistir filmes</li>
+                <li>Ouvir música</li>
+            </ul>
+
+        </section>
+
+
+        <!-- QUARTO OBJETIVO -->
+        <section class="objetivos">
+
+            <h2>Quarto objetivo</h2>
+
+            <p>
+                Meu objetivo é ter um emprego estável, construir uma
+                família, alcançar uma renda mensal significativa e
+                conquistar minhas próprias coisas através do meu esforço,
+                dedicação e trabalho.
+            </p>
+
+        </section>
+
+
+        <!-- GOOGLE -->
+        <section class="google-section">
+
+            <h2>Meu site favorito</h2>
+
+            <a
+                class="google-link"
+                href="https://www.google.com"
+                target="_blank"
+            >
+
+                <span class="google-logo">G</span>
+
+                <span class="google-text">
+                    Acessar o Google
+                </span>
+
+                <span class="seta">→</span>
+
+            </a>
+
+        </section>
+
+
+        <!-- RODAPÉ -->
+        <footer>
+            Feito com dedicação por jw
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
