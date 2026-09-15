@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 1. Alterar o título da página -->
+    <title>Cadastro de Alunos</title>
+</head>
+
+<body>
+
+    <!-- 2. Alterar o título principal -->
+    <h2>Cadastro de Alunos</h2>
+
+    <form action="#" method="POST">
+
+        <!-- Campo para Nome -->
+        <p>
+            <!-- 3. Nome Completo -> Nome do Aluno -->
+            <label for="nome">Nome do Aluno:</label><br>
+
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Digite seu nome completo"
+                required
+            >
+        </p>
+
+
+        <!-- Campo para E-mail -->
+        <p>
+            <!-- 4. E-mail -> E-mail do Aluno -->
+            <label for="email">E-mail do Aluno:</label><br>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="seuemail@exemplo.com"
+                required
+            >
+        </p>
+
+
+        <!-- Campo para Senha -->
+        <p>
+            <!-- 5. Senha -> Senha de Acesso -->
+            <label for="senha">Senha de Acesso:</label><br>
+
+            <input
+                type="password"
+                id="senha"
+                name="senha"
+                required
+            >
+        </p>
+
+
+        <!-- Campo de Seleção -->
+        <p>
+            <label for="assunto">Assunto:</label><br>
+
+            <select id="assunto" name="assunto">
+
+                <!-- 6. Substituir as opções existentes -->
+                <option value="informatica">Informática</option>
+
+                <option value="atividade">Atividade</option>
+
+                <option value="duvida">Dúvida</option>
+
+            </select>
+        </p>
+
+
+        <!-- Caixa de Texto -->
+        <p>
+            <!-- 7. Mensagem -> Comentário -->
+            <label for="mensagem">Comentário:</label><br>
+
+            <!-- 8. Alterar o texto dentro da caixa -->
+            <textarea
+                id="mensagem"
+                name="mensagem"
+                rows="4"
+                cols="30"
+                placeholder="Digite seu comentário..."
+            ></textarea>
+        </p>
+
+
+        <!-- Botões -->
+        <p>
+            <!-- 9. Enviar -> Cadastrar -->
+            <button type="submit">Cadastrar</button>
+
+            <!-- 10. Limpar -> Apagar -->
+            <button type="reset">Apagar</button>
+        </p>
+
+    </form>
+
+</body>
+</html>
