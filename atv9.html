@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Define o título da página -->
+    <title>Formulário</title>
+</head>
+
+<body>
+
+<!-- Título principal -->
+<h1>Formulário</h1>
+
+<!-- Início do formulário -->
+<form>
+
+<!-- Dados pessoais -->
+<fieldset>
+    <legend>Dados pessoais</legend>
+
+    Nome:
+    <input type="text" name="nome">
+    <br><br>
+
+    Endereço:
+    <input type="text" name="endereco">
+    <br><br>
+
+    Cidade:
+    <input type="text" name="cidade">
+    <br><br>
+
+    <!-- Seleção do estado -->
+    Estado:
+    <select name="estado">
+        <option>São Paulo</option>
+        <option>Rio de Janeiro</option>
+        <option>Minas Gerais</option>
+        <option>Bahia</option>
+        <option>Alagoas</option>
+        <option>Bahia</option>
+        <option>Ceará</option>
+        <option>Maranhão</option>
+        <option>Paraíba</option>
+        <option>Pernambuco</option>
+        <option>Piauí</option>
+        <option>Rio Grande do Norte</option>
+        <option>Sergipe</option>
+    </select>
+</fieldset>
+
+<br>
+
+<!-- Dados profissionais -->
+<fieldset>
+    <legend>Dados profissionais</legend>
+
+    <!-- Opções de cargo -->
+    Natureza do Cargo
+    <br>
+
+    <input type="radio" name="cargo" checked> Gerência
+    <input type="radio" name="cargo"> Financeiro
+    <input type="radio" name="cargo"> Recepção
+    <input type="radio" name="cargo"> Administrativo
+    <input type="radio" name="cargo"> Jurídico
+    <input type="radio" name="cargo"> Gerência
+
+    <br><br>
+
+    <!-- Áreas de interesse -->
+    Área de interesse
+    <br>
+
+    <input type="checkbox"> Computação
+    <input type="checkbox"> Biologia
+    <input type="checkbox"> Meio Ambiente
+    <input type="checkbox"> Engenharia
+    <input type="checkbox"> História
+
+    <br><br>
+
+    <!-- Campo para o mini-currículo -->
+    Mini-currículo:
+    <br>
+    <textarea rows="5" cols="40"></textarea>
+
+</fieldset>
+
+<br>
+
+<!-- Botões do formulário -->
+<input type="submit" value="Enviar">
+<input type="reset" value="Limpar">
+
+<!-- Fim do formulário -->
+</form>
+
+</body>
+</html>
