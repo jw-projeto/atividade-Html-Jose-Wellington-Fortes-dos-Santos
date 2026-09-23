@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Cadastro</title>
+</head>
+
+<body>
+<!-- Início do Cadastro -->
+    <h1>Sistema de Cadastro</h1>
+
+    <p>Preencha todos os campos abaixo para concluir seu cadastro.</p>
+
+    <form>
+<!-- Forneça seus dados pessoais -->
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+
+            <label>Nome completo *</label>
+            <input type="text" placeholder="Digite seu nome completo">
+
+            <label>Data de nascimento *</label>
+            <input type="date">
+
+            <br><br>
+
+            <label>CPF *</label>
+            <input type="text" placeholder="000.000.000-00">
+
+            <label>RG *</label>
+            <input type="text" placeholder="Digite seu RG">
+
+            <br><br>
+            
+            <label>Sexo *</label>
+            <select>
+                <option>Selecione</option>
+                <option>Masculino</option>
+                <option>Feminino</option>
+                <option>Outro</option>
+            </select>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Contato</legend>
+
+            <label>E-mail *</label>
+            <input type="email" placeholder="exemplo@anonimo.com">
+
+            <label>Telefone *</label>
+            <input type="tel" placeholder="(99) 99999-9999">
+
+            <br><br>
+
+            <label>Endereço *</label>
+            <input type="text" placeholder="Digite seu endereço completo">
+
+            <br><br>
+
+            <label>Cidade *</label>
+            <input type="text" placeholder="Digite sua cidade">
+
+            <label>Estado *</label>
+            <select>
+                <option>Selecione</option>
+                <option>BA</option>
+                <option>CE</option>
+                <option>DF</option>
+                <option>GO</option>
+                <option>MA</option>
+                <option>MG</option>
+                <option>PE</option>
+                <option>PI</option>
+                <option>RJ</option>
+                <option>SP</option>
+            </select>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Acesso</legend>
+
+            <label>Senha *</label>
+            <input type="password" placeholder="Digite sua senha">
+
+            <label>Confirme a senha *</label>
+            <input type="password" placeholder="Repita sua senha">
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Informações Adicionais</legend>
+
+            <label>Profissão</label>
+            <input type="text" placeholder="Digite sua profissão">
+
+            <label>Como você nos conheceu?</label>
+            <select>
+                <option>Selecione</option>
+                <option>Google</option>
+                <option>Redes sociais</option>
+                <option>Indicação</option>
+                <option>Outro</option>
+            </select>
+
+        </fieldset>
+
+        <br>
+
+        <input type="checkbox">
+
+        <label>
+            Li e aceito os
+            <a href="#">termos de uso</a>
+            e a
+            <a href="#">política de privacidade</a>.
+        </label>
+
+        <br><br>
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
+
+</body>
+
+</html>
